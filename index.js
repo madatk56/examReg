@@ -1,8 +1,12 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+
 const router = require('./src/routes/index')
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 const port = process.env.port || 3000;
 
