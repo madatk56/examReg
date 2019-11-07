@@ -3,7 +3,8 @@ module.exports = {
         HOME:"/"
     },
     LOGIN:{
-        SIGN_IN:"/sign-in"
+        SIGN_IN:"/sign-in",
+        CREATE:"/create-users"
     }
     
 }

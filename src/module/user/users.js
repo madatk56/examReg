@@ -1,7 +1,5 @@
 const mongoose = require('../../controller/connection')
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
 const saltRound = 10;
 const userSchema = mongoose.Schema({
     userName: String,
@@ -42,19 +40,30 @@ const createUser = (user) => {
 const signIn = async (account) => {
     let accountCheck =  await users.findOne({userName:account.userName});
     return new Promise((resolve,reject)=>{
-        bcrypt.compare(account.password,accountCheck.password,(err,res)=>{
-            if(res==true){
-                resolve({
-                    code:'200',
-                    message:'signed in'
-                })
-            }else{
-                resolve({
-                    code:'420',
-                    message:'fail to login'
-                })
-            }
-        })
+        if(accountCheck){
+            bcrypt.compare(account.password,accountCheck.password,(err,res)=>{
+                if(res==true){
+                    resolve({
+                        code:'200',
+                        message:'signed in',
+                        data:{
+                            userName:account.userName,
+                            password:account.password
+                        }
+                    })
+                }else{
+                    resolve({
+                        code:'420',
+                        message:'fail to login'
+                    })
+                }
+            })
+        }else{
+            resolve({
+                code:'400',
+                message:'usename is not exist'
+            })
+        }
     })
     
 }
