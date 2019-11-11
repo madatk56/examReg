@@ -1,4 +1,4 @@
-const usersModule = require('../../module/user/users');
+const usersModule = require('../../module/user/usersModule');
 const token = require('../../module/token/jsonwebtoken');
 module.exports= async(req,res)=>{
   const user = {

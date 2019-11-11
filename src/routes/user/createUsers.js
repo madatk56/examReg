@@ -1,4 +1,4 @@
-const usersModule = require('../../module/user/users');
+const usersModule = require('../../module/user/usersModule');
 const excelToJson = require('convert-excel-to-json');
 
 module.exports =(req,res)=>{
@@ -15,7 +15,10 @@ module.exports =(req,res)=>{
         },
         columnToKey:{
           A:'userName',
-          B:'password'
+          B:'password',
+          C:'fullName',
+          D:'studentID',
+          E:'grade'
         },
        sheets:['Sheet1']
       })

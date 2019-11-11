@@ -1,10 +1,14 @@
 module.exports = {
     ROOT_API:{
-        HOME:"/"
+        HOME:"/",
+        COURSES:'/courses'
     },
     LOGIN:{
         SIGN_IN:"/sign-in",
         CREATE:"/create-users"
+    },
+    COURSES:{
+        CREATE:'/create'
     }
     
 }
