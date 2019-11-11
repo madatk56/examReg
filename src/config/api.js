@@ -8,7 +8,9 @@ module.exports = {
         CREATE:"/create-users"
     },
     COURSES:{
-        CREATE:'/create'
+        CREATE:'/create',
+        get_course_of_member:'/student/:ID',
+        get_members_by_courseID:'/course/:ID'
     }
     
 }
