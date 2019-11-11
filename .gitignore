@@ -3,4 +3,4 @@ node_modules
 documents.xlsx
 ~$documents.xlsx
 .env
- src/config/excel
+src/config/excel
