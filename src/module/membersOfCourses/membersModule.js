@@ -19,16 +19,11 @@ const getMembersbyCourseID = async(courseId)=>{
   }
   return(await members.find(tmp));
 }
-const getAllCoursesOfmember = (studentID)=>{
+const getAllCoursesOfmember = async(studentID)=>{
   const tmp = {
     "list.studentID" : studentID
   }
-  return new Promise(async(resolve,reject)=>{
-    resolve({
-      code:'200',
-      data:await members.find(tmp,{list:0,_id:0,__v:0})
-    })
-  })
+  return (await members.find(tmp,{list:0,_id:0,__v:0})) 
 }
 
 const createMembersOfCourses =(courseId,studentsList)=>{

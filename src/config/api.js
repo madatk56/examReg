@@ -1,7 +1,8 @@
 module.exports = {
     ROOT_API:{
         HOME:"/",
-        COURSES:'/courses'
+        COURSES:'/courses',
+        MEMBERS:'/student'
     },
     LOGIN:{
         SIGN_IN:"/sign-in",
@@ -9,8 +10,10 @@ module.exports = {
     },
     COURSES:{
         CREATE:'/create',
-        get_course_of_member:'/student/:ID',
         get_members_by_courseID:'/course/:ID'
+    },
+    MEMBERS:{
+        get_course_of_member:'/:ID',
+        create_members:'/create'
     }
-    
 }
