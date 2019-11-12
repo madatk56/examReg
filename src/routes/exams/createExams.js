@@ -5,26 +5,42 @@ module.exports =(req,res)=>{
   const file = req.files.exam;
   const token = req.body.token;
   const sourceFile = process.cwd()+'/src/config/excel/'+file.name;
-  file.mv(sourceFile,err=>{
-    if(err){
-      console.log(new Error('error upload file '+ err));
-    }else{
-      const data = execlToJson({
-        sourceFile:sourceFile,
-        header:{
-          rows:1
-        },
-        columnToKey:{
-          A:'examID',
-          B:'CourseID',
-          C:'class',
-          D:'date',
-          E:'startTime',
-          F:'endTime',
-          G:'slot'
+  jwt.decode(token).then(data=>{
+    if(data.userName=='admin'){
+      file.mv(sourceFile,err=>{
+        if(err){
+          console.log(new Error('error upload file '+ err));
+        }else{
+          const data = execlToJson({
+            sourceFile:sourceFile,
+            header:{
+              rows:1
+            },
+            columnToKey:{
+              A:'examID',
+              B:'courseID',
+              C:'class',
+              D:'date',
+              E:'startTime',
+              F:'endTime',
+              G:'slot'
+            }
+          })
+          examModule.createExam(data.Sheet1).then(result=>{
+            res.json(result);
+          })
         }
       })
-      res.json(data);
+    }else{
+      res.json({
+        code:'444',
+        message:'user is not admin'
+      })
     }
-  })
+  }).catch(err=>{
+    if(err) res.json({
+      code:'420',
+      message:'user is not exist!!'
+    })
+  }) 
 }

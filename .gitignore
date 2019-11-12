@@ -3,3 +3,7 @@ node_modules
 documents.xlsx
 ~$documents.xlsx
 .env
+src/config/excel/2.xlsx
+src/module/exam/test.js
+src/module/token/test.js
+

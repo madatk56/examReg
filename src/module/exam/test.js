@@ -2,7 +2,7 @@ const check = require('./checkTime');
 const examModules = require('./examModule');
 const data ={
   examID:'1',
-  CourseID:'1',
+  courseID:'1',
   class:'1',
   date:'12-11-2000',
   startTime:'8:00AM',
@@ -10,32 +10,15 @@ const data ={
   slot:'30'
 }
 const list = [
-
-  {
-    class:'2',
-  date:'12-11-2000',
-  startTime:'8:00AM',
-  endTime:'10:00AM'
-  },
-  {
-    class:'1',
-  date:'12-11-2000',
-  startTime:'7:00AM',
-  endTime:'7:50AM'
-  },
-  {
-    class:'2',
-  date:'12-11-2000',
-  startTime:'11:00AM',
-  endTime:'13:00AM'
-  },
-  {
-    class:'2',
-  date:'12-11-2000',
-  startTime:'9:00AM',
-  endTime:'11:00AM'
+  { 
+    examID:'5',
+    courseID:'1',
+    class:'3',
+    date:'1/1/2000',
+    startTime:'7:00AM',
+    endTime:'7:50AM'
   }
 ]
-examModules.createExam(list).then(rs=>{
+examModules.deleteExam('1').then(rs=>{
   console.log(rs);
 });

@@ -4,6 +4,7 @@ const coursesSchema= mongoose.Schema({
   name: String
 })
 const courses = mongoose.model('courses',coursesSchema);
+// create Courses
 const createCourses=(list)=>{
   let check = false;
   let tmpCourses=[];

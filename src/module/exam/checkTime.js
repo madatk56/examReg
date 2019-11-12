@@ -28,12 +28,12 @@ const sliceDate=(date)=>{
     month: String,
     year: String
   }
-  tmpDate.day = date.slice(0,date.indexOf('-'));
-  tmpDate.month= date.slice(date.indexOf('-')+1,date.lastIndexOf('-'));
-  tmpDate.year = date.slice(date.lastIndexOf('-')+1,date.lastIndexOf('-')+5);
+  tmpDate.day = date.slice(0,date.indexOf('/'));
+  tmpDate.month= date.slice(date.indexOf('/')+1,date.lastIndexOf('/'));
+  tmpDate.year = date.slice(date.lastIndexOf('/')+1,date.lastIndexOf('/')+5);
   return tmpDate
 }
-//kiem tra ngay thi co trung nhau khon
+//kiem tra ngay thi co trung nhau khong
 const overlapDate= (date1,date2)=>{
   const d1 = sliceDate(date1);
   const d2 = sliceDate(date2);
@@ -50,6 +50,7 @@ const overlapDate= (date1,date2)=>{
 const checkOverlap =(data,list)=>{
   for(let i=0;i<list.length;i++){
     if(data.class==list[i].class ){
+      console.log(data.class==list[i].class)
       if(overlapDate(data.date.toString(),list[i].date.toString())){
         if(overlapTime(data.startTime,data.endTime,list[i].startTime,list[i].endTime)){
           return true;

@@ -2,7 +2,7 @@ const mongoose = require('../../controller/connection');
 const checkTime = require('./checkTime');
 const examModule = mongoose.Schema({
   examID: String,
-  CourseID: String,
+  courseID: String,
   class: String,
   date: String,
   startTime: String,
@@ -64,7 +64,46 @@ const createExam = async(list) => {
     }
   })
 }
+// get all exam information
+const getAllExams = ()=>{
+  return new Promise(async(resolve,reject)=>{
+    const data = await exam.find({},{_id:0,__v:0});
+    if(data.length>0){
+      resolve({
+        code:'200',
+        message:'ok',
+        exams: data
+      })
+    }else{
+      resolve({
+        code:'400',
+        message:'empty!!!' 
+      })
+    }
+  })
+}
+// delete one exam 
+const deleteExam = async(examID)=>{
+  const result = await exam.remove({examID:examID});
+  return new Promise((resolve,reject)=>{
+    if(result.deletedCount==1){
+      resolve({
+        code:'200',
+        message:'deleted',
+        exam: examID
+      })
+    }else{
+      resolve({
+        code:'400',
+        message:'id is not exist',
 
+      })
+    }
+  })
+  
+}
 module.exports = {
-  createExam
+  createExam,
+  getAllExams,
+  deleteExam
 } 
