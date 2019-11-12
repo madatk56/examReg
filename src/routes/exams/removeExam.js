@@ -2,11 +2,11 @@ const handleExam = require('../../module/exam/examModule');
 const jwt = require('../../module/token/jsonwebtoken');
 
 module.exports =(req,res)=>{
-  const courseID = req.body.courseID;
+  const examID = req.body.examID;
   const token = req.body.token;
   jwt.decode(token).then(data=>{
     if(data.userName=='admin'){
-      handleExam.deleteExam(courseID).then(rs=>{
+      handleExam.deleteExam(examID).then(rs=>{
         res.json(rs);
       })
     }else{

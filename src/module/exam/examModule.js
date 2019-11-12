@@ -95,7 +95,7 @@ const deleteExam = async(examID)=>{
     }else{
       resolve({
         code:'400',
-        message:'id is not exist',
+        message:'id is not exist, id= '+examID,
 
       })
     }
