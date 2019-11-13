@@ -4,6 +4,12 @@ const coursesSchema= mongoose.Schema({
   name: String
 })
 const courses = mongoose.model('courses',coursesSchema);
+
+// getCoursesByID
+const getCoursesByID= async(courseID)=>{
+  return(await courses.find({courseID:courseID}));
+}
+// Create Courses
 const createCourses=(list)=>{
   let check = false;
   let tmpCourses=[];
@@ -50,5 +56,6 @@ const createCourses=(list)=>{
   })
 }
 module.exports={
+  getCoursesByID,
   createCourses
 }
