@@ -17,7 +17,6 @@ module.exports =(req,res)=>{
               rows:1
             },
             columnToKey:{
-              A:'examID',
               B:'courseID',
               C:'class',
               D:'date',

@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     userName: String,
     password: String,
     fullName: String,
-    studentId: String,
+    studentID: String,
     grade: String
 })
 const users = mongoose.model('user', userSchema);
@@ -68,6 +68,7 @@ const signIn = async (account) => {
     
 }
 module.exports = {
+    users,
     createUser,
     signIn
 }

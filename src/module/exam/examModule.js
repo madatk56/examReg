@@ -1,13 +1,12 @@
 const mongoose = require('../../controller/connection');
-const checkTime = require('./checkTime');
+const checkTime = require('./m_checkTime');
 const examModule = mongoose.Schema({
-  examID: String,
   courseID: String,
   class: String,
   date: String,
   startTime: String,
   endTime: String,
-  slot: String
+  slot: Number
 })
 const exam = mongoose.model('exam',examModule);
 
@@ -42,6 +41,7 @@ const createExam = async(list) => {
   return new Promise((resolve,reject)=>{
     if(check.code=='200'){
       for(let i=0;i<list.length;i++){
+        list[i].slot= parseInt(list[i].slot);
         exam.create(list[i],(err,data)=>{
           if(err) return reject(new Error('has err when create exam '+ err))
           if(!data){
@@ -67,7 +67,7 @@ const createExam = async(list) => {
 // get all exam information
 const getAllExams = ()=>{
   return new Promise(async(resolve,reject)=>{
-    const data = await exam.find({},{_id:0,__v:0});
+    const data = await exam.find({},{__v:0});
     if(data.length>0){
       resolve({
         code:'200',
@@ -103,6 +103,7 @@ const deleteExam = async(examID)=>{
   
 }
 module.exports = {
+  exam,
   createExam,
   getAllExams,
   deleteExam
