@@ -46,6 +46,7 @@ const createMembersOfCourses =(courseId,studentsList)=>{
   })
 }
 module.exports={
+  members,
   getMembersbyCourseID,
   getAllCoursesOfmember,
   createMembersOfCourses

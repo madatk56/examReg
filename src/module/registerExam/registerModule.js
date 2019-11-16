@@ -15,14 +15,23 @@ const resgister = mongoose.model('register', registerSchema);
 
 const registerExam = (reg) => {
   return new Promise((resolve,reject)=>{
-    resgister.create(reg,(error,data)=>{
-      if(error){
-        reject(new Error('error to create register exam '+ error))
+    mVerifyReg.checkBan(reg).then(rs=>{
+      if(!rs){
+        resgister.create(reg,(error,data)=>{
+          if(error){
+            reject(new Error('error to create register exam '+ error))
+          }else{
+            mVerifyReg.updateSlot(reg.examID)
+            resolve({
+              code:'200',
+              data
+            })
+          }
+        })
       }else{
-        mVerifyReg.updateSlot(reg.examID)
         resolve({
-          code:'200',
-          data
+          code:'400',
+          message:'can\'t register exam cause banned'
         })
       }
     })
