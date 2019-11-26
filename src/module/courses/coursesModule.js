@@ -4,7 +4,10 @@ const coursesSchema= mongoose.Schema({
   name: String
 })
 const courses = mongoose.model('courses',coursesSchema);
-
+//getAllCourses
+const getAllCourses= async()=>{
+    return(await courses.find());
+}
 // getCoursesByID
 const getCoursesByID= async(courseID)=>{
   return(await courses.find({courseID:courseID}));
@@ -56,6 +59,7 @@ const createCourses=(list)=>{
   })
 }
 module.exports={
+  getAllCourses,
   getCoursesByID,
   createCourses
 }

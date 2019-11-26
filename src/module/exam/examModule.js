@@ -54,7 +54,8 @@ const createExam = async(list) => {
       }
       return resolve({
         code:'200',
-        message:'created exams'
+        message:'created exams',
+        exams:list
       })
     }else{
       return resolve({

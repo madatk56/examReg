@@ -53,9 +53,9 @@ const getRegisterByStudentID = (studentID)=>{
   })
 }
 
-const getRegisterByClass = (c)=>{
+const getRegisterByExamID = (id)=>{
   return new Promise((resolve,reject)=>{
-    resgister.find({class:c},(err,res)=>{
+    resgister.find({examID:id},(err,res)=>{
       if(err){
         reject( new Error('error to get all register Exams of class '+ err))
       }else{
@@ -92,6 +92,6 @@ const removeRegister = async(reg)=>{
 module.exports= {
   registerExam,
   getRegisterByStudentID,
-  getRegisterByClass,
+  getRegisterByExamID,
   removeRegister
 }

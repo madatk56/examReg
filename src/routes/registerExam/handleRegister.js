@@ -2,14 +2,29 @@ const register = require('../../module/registerExam/registerModule');
 const mUser= require('../../module/user/m_users');
 
 const getRegisterByStudentID = (req,res)=>{
-  const id = req.body.studentID;
+  const id = req.params.ID;
   register.getRegisterByStudentID(id).then(rs=>{
-    res.json(rs);
+    res.json({
+      code:'200',
+      exam:rs
+    });
   }).catch(err=>{
-    res.json(err);
+    res.json({
+      code:'400',
+      message:err
+    });
   })
 }
 
+const getRegisterByExamID = (req,res)=>{
+  const id = req.params.ID;
+  register.getRegisterByExamID(id).then(rs=>{
+    res.json({
+      code:'200',
+      register:rs
+    })
+  })
+}
 const removeRegister = (req,res)=>{
   const reg = {
     studentID: req.body.studentID,
@@ -28,5 +43,6 @@ const removeRegister = (req,res)=>{
 }
 module.exports = {
   getRegisterByStudentID,
-  removeRegister
+  removeRegister,
+  getRegisterByExamID
 }

@@ -12,7 +12,8 @@ module.exports = {
     },
     COURSES:{
         CREATE:'/create',
-        get_members_by_courseID:'/:ID'
+        get_members_by_courseID:'/:ID',
+        get_all_courses:'/all'
     },
     MEMBERS:{
         get_course_of_member:'/:ID',
@@ -26,7 +27,7 @@ module.exports = {
     REGISTER:{
         register:'/create',
         get_by_studentID:'/student/:ID',
-        get_by_class:'/class/:ID',
+        get_by_exam:'/exam/:ID',
         remove:'/remove'
     }
 }
