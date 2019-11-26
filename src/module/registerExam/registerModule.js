@@ -3,12 +3,10 @@ const mVerifyReg = require('./m_verifyReg');
 
 const registerSchema = mongoose.Schema({
   studentID: String,
+  name:String,
   examID: String,
   courseID: String,
   class: String,
-  date: String,
-  startTime: String,
-  endTime: String
 })
 
 const resgister = mongoose.model('register', registerSchema);

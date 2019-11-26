@@ -11,8 +11,8 @@ module.exports= async(req,res)=>{
         code:'200',
         message:'signed in',
         account:{
-          userName : user.userName,
-          password: user.password,
+          userName: result.userName,
+          data:result.data,
           token: await token.hashcode(user)
         }
       })

@@ -3,12 +3,10 @@ const mUser= require('../../module/user/m_users');
 module.exports = (req,res)=>{
   const reg = {
     studentID: req.body.studentID,
+    name: req.body.name,
+    class:req.body.class,
     examID : req.body.examID,
-    courseID :req.body.courseID,
-    class : req.body.class,
-    date : req.body.date,
-    startTime : req.body.startTime,
-    endTime : req.body.endTime
+    courseID :req.body.courseID
   }
   const token = req.body.token;
   

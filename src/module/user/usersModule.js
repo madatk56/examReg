@@ -46,9 +46,11 @@ const signIn = async (account) => {
                     resolve({
                         code:'200',
                         message:'signed in',
+                        userName:accountCheck.userName,
                         data:{
-                            userName:account.userName,
-                            password:account.password
+                            fullName:accountCheck.fullName,
+                            studentID:accountCheck.studentID,
+                            grade: accountCheck.grade
                         }
                     })
                 }else{
