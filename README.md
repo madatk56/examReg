@@ -1,3 +1,4 @@
+# Hệ thống đang được phát triển trên nhánh develop
 # Hệ thống có 2 vai trò sử dụng: quản trị viên, sinh viên.
 - Quản trị viên quản lý danh sách môn thi/học phần
 - Quản trị viên quản lý danh sách sinh viên, cấp tài khoản cho sinh viên (từ Excel).
