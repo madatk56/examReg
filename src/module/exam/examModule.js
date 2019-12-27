@@ -1,12 +1,15 @@
 const mongoose = require('../../controller/connection');
 const checkTime = require('./m_checkTime');
+//const coursesModule = require('../courses/coursesModule');
 const examModule = mongoose.Schema({
   courseID: String,
+  courseName:String,
   class: String,
   date: String,
   startTime: String,
   endTime: String,
-  slot: Number
+  slot: Number,
+  totalSlot: Number
 })
 const exam = mongoose.model('exam',examModule);
 
@@ -41,13 +44,14 @@ const createExam = async(list) => {
   return new Promise((resolve,reject)=>{
     if(check.code=='200'){
       for(let i=0;i<list.length;i++){
-        list[i].slot= parseInt(list[i].slot);
+        list[i].totalSlot= parseInt(list[i].totalSlot);
+        list[i].slot=list[i].totalSlot;
         exam.create(list[i],(err,data)=>{
           if(err) return reject(new Error('has err when create exam '+ err))
           if(!data){
             return resolve({
               code:'420',
-              message:'can\'t create exam'
+              message:'can\'t create exam cause somthing is overlap'
             })
           }
         })
@@ -85,7 +89,7 @@ const getAllExams = ()=>{
 }
 // delete one exam 
 const deleteExam = async(examID)=>{
-  const result = await exam.remove({examID:examID});
+  const result = await exam.remove({_id:examID});
   return new Promise((resolve,reject)=>{
     if(result.deletedCount==1){
       resolve({
@@ -100,12 +104,27 @@ const deleteExam = async(examID)=>{
 
       })
     }
+  }) 
+}
+const getExamsByCourseID = (courseID) =>{
+  return new Promise((resolve,reject)=>{
+    getAllExams().then(rs=>{
+      if(rs.code ==="200"){
+       const exams= rs.exams.filter(exam=>{
+         return (exam.courseID==courseID)
+       });
+       resolve(exams);
+      }else{
+        resolve([]);
+      }
+    })
+
   })
-  
 }
 module.exports = {
   exam,
   createExam,
   getAllExams,
-  deleteExam
+  deleteExam,
+  getExamsByCourseID
 } 

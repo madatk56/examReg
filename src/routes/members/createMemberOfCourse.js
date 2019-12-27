@@ -4,6 +4,7 @@ const handleMembers = require('../../module/membersOfCourses/membersModule');
 const coursesModule = require('../../module/courses/coursesModule');
 
 module.exports = (req,res)=>{
+  const courseID = req.body.courseID
   const file = req.files.member;
   const fileName= file.name;
   const sourceFile = process.cwd()+'/src/config/excel/'+fileName; 
@@ -23,11 +24,10 @@ module.exports = (req,res)=>{
           D:'ban'
        }
       })
-      const indexString = fileName.indexOf('.xlsx');
-      const courseID = fileName.slice(0,indexString);
-      coursesModule. getCoursesByID(courseID).then(result=>{
+      //const indexString = fileName.indexOf('.xlsx');
+      coursesModule.getCoursesByID(courseID).then(result=>{
         if(result.length>0){
-          handleMembers.createMembersOfCourses(courseID,data.Sheet1).then(result=>{
+          handleMembers.createMembersOfCourses(result[0],data.Sheet1).then(result=>{
             res.json(result);
           })
         }else{

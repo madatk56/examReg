@@ -69,8 +69,34 @@ const signIn = async (account) => {
     })
     
 }
+const getAllUser = ()=>{
+    return new Promise(async (resolve,reject)=>{
+        const accounts = await users.find();
+        resolve(accounts);
+    })
+}
+const removeUser =async(id)=>{
+    const result = await users.remove({_id:id});
+    return new Promise((resolve,reject)=>{
+      if(result.deletedCount==1){
+        resolve({
+          code:'200',
+          message:'deleted',
+          account: id
+        })
+      }else{
+        resolve({
+          code:'400',
+          message:'id is not exist, id= '+id,
+  
+        })
+      }
+    })
+}
 module.exports = {
     users,
     createUser,
-    signIn
+    signIn,
+    getAllUser,
+    removeUser
 }

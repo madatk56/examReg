@@ -5,9 +5,15 @@ function updateSlot(examID){
    // console.log(rs);
   })
 }
+function increaseSlot(examID){
+  examCollections.exam.updateOne({_id:examID},{$inc:{slot:+1}},{new:true},(err,rs)=>{
+    // console.log(rs);
+   })
+}
 function checkBan(reg){
   return new Promise((resolve,reject)=>{
     m_member.members.findOne({courseID:reg.courseID},(err,res)=>{
+      if(res===null){ return resolve(false)}
       res.list.forEach(element => {
         if(reg.studentID===element.studentID){
            if(element.ban=='x'|| element.ban=='X'){
@@ -16,7 +22,7 @@ function checkBan(reg){
              resolve(false);
            }
            
-        }
+        } 
       });
     })
   })
@@ -24,5 +30,6 @@ function checkBan(reg){
 
 module.exports = {
   updateSlot,
-  checkBan
+  checkBan,
+  increaseSlot
 } 

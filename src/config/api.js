@@ -8,7 +8,9 @@ module.exports = {
     },
     LOGIN:{
         SIGN_IN:"/sign-in",
-        CREATE:"/create-users"
+        CREATE:"/create-users",
+        GET_ALL_USERS:'/all',
+        REMOVE_USER:'/remove'
     },
     COURSES:{
         CREATE:'/create',
@@ -22,7 +24,8 @@ module.exports = {
     EXAM:{
         create_exams:'/create',
         remove_exams:'/remove',
-        get_all:'/all'
+        get_all:'/all',
+        get_by_examID:"/id/:courseID"
     },
     REGISTER:{
         register:'/create',

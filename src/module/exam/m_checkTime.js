@@ -50,7 +50,6 @@ const overlapDate= (date1,date2)=>{
 const checkOverlap =(data,list)=>{
   for(let i=0;i<list.length;i++){
     if(data.class==list[i].class ){
-      console.log(data.class==list[i].class)
       if(overlapDate(data.date.toString(),list[i].date.toString())){
         if(overlapTime(data.startTime,data.endTime,list[i].startTime,list[i].endTime)){
           return true;
@@ -60,6 +59,18 @@ const checkOverlap =(data,list)=>{
   }
   return false;
 }
+// kiem tra ngay ca thi co bi trung nhau khong 
+const checkSchudeOverlap =(data,list)=>{
+  for(let i=0;i<list.length;i++){
+      if(overlapDate(data.date.toString(),list[i].date.toString())){
+      if(overlapTime(data.startTime,data.endTime,list[i].startTime,list[i].endTime)){
+          return true;
+        }
+      }
+    }  
+    return false;
+}
 module.exports = {
- checkOverlap
+ checkOverlap,
+ checkSchudeOverlap
 }

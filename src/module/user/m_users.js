@@ -12,7 +12,8 @@ const verifyUser = async(token)=>{
             if(data.length>0){
               resolve({
                 code:'200',
-                message:'exist student'
+                message:'exist student',
+                student:data
               })
             }else{
               resolve({

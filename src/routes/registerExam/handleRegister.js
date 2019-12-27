@@ -26,9 +26,9 @@ const getRegisterByExamID = (req,res)=>{
   })
 }
 const removeRegister = (req,res)=>{
-  const reg = {
-    studentID: req.body.studentID,
-    examID : req.body.examID
+  const reg ={
+    id: req.body.id,
+    examID: req.body.examID
   }
   const token = req.body.token;
   mUser.verifyUser(token).then(rs=>{
