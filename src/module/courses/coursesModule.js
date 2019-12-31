@@ -58,8 +58,19 @@ const createCourses=(list)=>{
     }
   })
 }
+const removeCourses = async(courseID)=>{
+  const rs = await courses.find({courseID});
+  if(rs.length>0){
+    const result = await courses.deleteMany({courseID});
+    if(result.deletedCount>0){
+      return true;
+    }
+  }
+  return false;
+}
 module.exports={
   getAllCourses,
   getCoursesByID,
-  createCourses
+  createCourses,
+  removeCourses
 }

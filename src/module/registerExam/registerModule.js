@@ -111,9 +111,25 @@ const removeRegister = async (reg) => {
   })
 
 }
+async function removeRegisterByExamID(examID) {
+  const result = await resgister.deleteMany({ examID });
+  return (result);
+}
+const removeRegisterByCourseID = async (courseID) => {
+  const rs = await resgister.find({ courseID });
+  if (rs.length > 0) {
+    const result = await resgister.deleteMany({ courseID });
+    if (result.deletedCount > 0) {
+      return true;
+    }
+  }
+  return false;
+}
 module.exports = {
   registerExam,
   getRegisterByStudentID,
   getRegisterByExamID,
-  removeRegister
+  removeRegister,
+  removeRegisterByCourseID,
+  removeRegisterByExamID
 }

@@ -46,9 +46,20 @@ const createMembersOfCourses =(course,studentsList)=>{
     })
   })
 }
+const deleteMembersByCourseID = async(courseID)=>{
+  const rs = await members.find({courseID});
+  if(rs.length>0){
+    const result = await members.deleteMany({courseID});
+    if(result.deletedCount>0){
+      return true;
+    }
+  }
+  return false;
+}
 module.exports={
   members,
   getMembersbyCourseID,
   getAllCoursesOfmember,
-  createMembersOfCourses
+  createMembersOfCourses,
+  deleteMembersByCourseID
 }

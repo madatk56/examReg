@@ -7,7 +7,12 @@ module.exports =(req,res)=>{
   jwt.decode(token).then(data=>{
     if(data.userName=='admin'){
       handleExam.deleteExam(examID).then(rs=>{
-        res.json(rs);
+        if(rs.code==="200"){
+          handleRegister.removeRegisterByExamID(examID);
+          res.json(rs);
+        }else{
+          res.json(rs);
+        }
       })
     }else{
       res.json({

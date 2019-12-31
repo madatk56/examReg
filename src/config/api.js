@@ -15,7 +15,8 @@ module.exports = {
     COURSES:{
         CREATE:'/create',
         get_members_by_courseID:'/:ID',
-        get_all_courses:'/all'
+        get_all_courses:'/all',
+        REMOVE:'/remove'
     },
     MEMBERS:{
         get_course_of_member:'/:ID',

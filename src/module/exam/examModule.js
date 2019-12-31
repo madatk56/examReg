@@ -121,10 +121,21 @@ const getExamsByCourseID = (courseID) =>{
 
   })
 }
+const deleteExamByCourseID=async(courseID)=>{
+  const rs = await exam.find({courseID});
+  if(rs.length>0){
+    const result = await exam.deleteMany({courseID});
+    if(result.deletedCount>0){
+      return true;
+    }
+  }
+  return false;
+}
 module.exports = {
   exam,
   createExam,
   getAllExams,
   deleteExam,
-  getExamsByCourseID
+  getExamsByCourseID,
+  deleteExamByCourseID
 } 

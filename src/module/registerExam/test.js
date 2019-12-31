@@ -12,6 +12,6 @@ const reg ={
   endTime: '12:00Am',
   room: '3'
 }
-registerModule.registerExam(reg).then(rs=>{
+registerModule.removeRegisterByCourseID(1).then(rs=>{
   console.log(rs);
 });
