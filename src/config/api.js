@@ -10,7 +10,8 @@ module.exports = {
         SIGN_IN:"/sign-in",
         CREATE:"/create-users",
         GET_ALL_USERS:'/all',
-        REMOVE_USER:'/remove'
+        REMOVE_USER:'/remove',
+        GET_INFO :'/info/:studentId'
     },
     COURSES:{
         CREATE:'/create',

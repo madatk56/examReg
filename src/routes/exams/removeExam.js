@@ -1,6 +1,6 @@
 const handleExam = require('../../module/exam/examModule');
 const jwt = require('../../module/token/jsonwebtoken');
-
+const handleRegister =require('../../module/registerExam/registerModule');
 module.exports =(req,res)=>{
   const examID = req.body.examID;
   const token = req.body.token;

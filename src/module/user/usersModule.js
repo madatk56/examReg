@@ -75,6 +75,12 @@ const getAllUser = ()=>{
         resolve(accounts);
     })
 }
+const getUserByStudentId=(id)=>{
+    return new Promise(async(resolve,reject)=>{
+        const account = await users.find({studentID:id})
+        resolve(account);
+    })
+}
 const removeUser =async(id)=>{
     const result = await users.remove({_id:id});
     return new Promise((resolve,reject)=>{
@@ -98,5 +104,6 @@ module.exports = {
     createUser,
     signIn,
     getAllUser,
-    removeUser
+    removeUser,
+    getUserByStudentId
 }

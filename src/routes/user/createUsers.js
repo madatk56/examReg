@@ -25,6 +25,7 @@ module.exports =(req,res)=>{
             },
            sheets:['Sheet1']
           })
+          console.log(result.Sheet1);
            usersModule.createUser(result.Sheet1).then(rs=>{
             if(rs.code =='200'){
               res.json({
